@@ -22,6 +22,16 @@ public class Character : MonoBehaviour
     //Movement
     bool right = true;
 
+	// Getting the manager
+	GameObject managerObject;
+	GameManager manager;
+
+	// Rigibody
+	Rigidbody rigidbody;
+
+	// This is what dictates the distance you travel every kep press. Currently set to one down below. Initialized to 999 to avoid issues.
+	int stop = 999;
+
     void Start()
     {
         // Lock at y at the start of the program.
@@ -45,8 +55,32 @@ public class Character : MonoBehaviour
 
         // Animation
         animator = this.gameObject.GetComponent<Animator>();
+
+		managerObject = GameObject.Find ("manager");
+		//GameManager manager = managerObject.GetComponent<GameManager> ();
+
+		// Rigidbody stuff
+		rigidbody = this.gameObject.GetComponent<Rigidbody>();
+
     }
 
+	public void Move(){
+		// Do stuff
+		print("I'm doing shit!");
+		if (Input.GetKey (KeyCode.RightArrow)) {
+
+			// Setting distance to travel per key press to + 1 of your current location.
+			stop = (int) transform.localPosition.x + 1;
+			rigidbody.velocity = transform.right * Time.deltaTime * 300;
+		}
+
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			stop = (int) transform.localPosition.x + 1;
+			rigidbody.velocity = -transform.right * Time.deltaTime * 300;
+		}
+	}
+
+	
     void spawnCollider()
     {
         GameObject colObject = new GameObject();
@@ -57,7 +91,7 @@ public class Character : MonoBehaviour
         BoxCollider col = colObject.AddComponent<BoxCollider>();
         col.size = new Vector2(1f, 1f);
         col.isTrigger = true;
-		colObject.tag = "Scent";
+//		colObject.tag = "Scent";
 
         StartCoroutine(destroyCollider(colObject,trailTime));
     }
@@ -66,10 +100,16 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         Destroy(col);
     }
+		
 
     // Update is called once per frame
     void Update()
     {
+
+		if (transform.localPosition.x > stop) {
+			rigidbody.velocity = Vector3.zero;
+		}
+
 		// Direction toon's facing
 		if (right == true)
 		{
@@ -80,97 +120,9 @@ public class Character : MonoBehaviour
 			transform.eulerAngles = new Vector3(-45, 180, 0);
 		}
 
+
+
 		transform.localPosition = new Vector3(transform.localPosition.x, ylock, transform.localPosition.z);
-		this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		int speed = 3;
-
-        // Movement control - Do not code anything that's not movement below here.
-
-        // Down-right diagonal.
-        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
-        {
-            right = true;
-            animator.Play("walking-side");
-            transform.localPosition += new Vector3(1, 0, -1) * speed * Time.deltaTime;
-            return;
-        }
-
-        // Up-right diagonal
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
-        {
-            right = true;
-            animator.Play("walking-side");
-            transform.localPosition += new Vector3(1, 0, 1) * speed * Time.deltaTime;
-            return;
-        }
-
-        // Up-left diagonal
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
-        {
-            right = false;
-            animator.Play("walking-side");
-            transform.localPosition += new Vector3(-1, 0, 1) * speed * Time.deltaTime;
-            return;
-        }
-
-        // Down-left diagonal
-        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
-        {
-            right = false;
-            animator.Play("walking-side");
-            transform.localPosition += new Vector3(-1, 0, -1) * speed * Time.deltaTime;
-            return;
-        }
-
-        // Moving 'Upwards' by modifing z-value +
-        if (Input.GetKey(KeyCode.UpArrow))
-		{
-            animator.Play("walking");
-            transform.localPosition += new Vector3(0, 0, 1) * speed * Time.deltaTime;
-		}
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            animator.Play("idle");      // shouldn't be 'walking' if he's standing still.
-        }
-
-        // Moving 'Downwards' by modifing z-value - 
-        if (Input.GetKey(KeyCode.DownArrow))
-		{
-            animator.Play("walking");   // Pretty self-explanatory
-			transform.localPosition += new Vector3(0, 0, -1) * speed * Time.deltaTime;
-		}
-
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            animator.Play("idle");      // shouldn't be 'walking' if he's standing still.
-        }
-
-		// Moving Right 
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			right = true;
-			transform.localPosition += new Vector3(1, 0, 0) * speed * Time.deltaTime;
-            animator.Play("walking-side");
-			//this.GetComponent<Rigidbody>().velocity = transform.right * Time.deltaTime * 300;
-		}
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            animator.Play("idle");     
-        }
-
-        // Move Left 
-        if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			right = false;
-			transform.localPosition += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
-            animator.Play("walking-side");
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            animator.Play("idle");
-        }
-
-        
     }
 
 	void gotSteak(){
