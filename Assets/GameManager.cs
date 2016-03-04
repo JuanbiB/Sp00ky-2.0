@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
 
+<<<<<<< HEAD
+=======
+//this is a test
+//balls i like
+
+>>>>>>> origin/master
 public class GameManager : MonoBehaviour {
 
 	// Have to create list to hold all the tiles
