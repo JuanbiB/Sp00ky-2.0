@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//this is a test
+
 public class GameManager : MonoBehaviour {
 
 	string itemText = "You're Holding Nothing";
