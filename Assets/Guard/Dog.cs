@@ -3,7 +3,8 @@ using System.Collections;
 
 
 public class Dog : MonoBehaviour {
-    public int balls = 999; 
+    public int balls = 999;
+    public Transform[] wayPoints;
     // Use this for initialization
     void Start () {
 	

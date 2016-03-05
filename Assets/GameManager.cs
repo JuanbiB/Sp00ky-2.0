@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 	GameObject tileFolder;
 
 	// Matrix
-	Tile [,]  tile_matrix;
+	public Tile [,]  tile_matrix;
 	List<Tile> tile_row;
 
 	// Player
@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour {
 
     // Getting all guards
     GameObject[] guards;
+
+    // Scent
+    public GameObject scent_colliders;
+    public int scent_number = 1;
 
 	float clock = 0f;
 	float turn_duration = 0.5f;
@@ -44,9 +48,12 @@ public class GameManager : MonoBehaviour {
 
         // This gets all current active guards on the scene (prior to pressing play).
         guards = GameObject.FindGameObjectsWithTag("Dog");
-       
-				
-		makeGrid ();
+
+        scent_colliders = new GameObject();
+        scent_colliders.name = "Scent";
+
+        makeGrid ();
+       // Pause();
 	}
 	// TODO:
         // All of the guard's AI
@@ -62,6 +69,7 @@ public class GameManager : MonoBehaviour {
                || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow))
             {
                 // We only want this to happen once.
+                //unPause();
                 player.Move();
                 
                 foreach (GameObject go in guards)
@@ -103,11 +111,11 @@ public class GameManager : MonoBehaviour {
 		GUI.Label (new Rect (100, 70, 100, 50), itemText);
 	}
 
-	void Pause(){
+	public void Pause(){
 		Time.timeScale = 0;
 	}
 
-	void unPause(){
+	public void unPause(){
 		Time.timeScale = 1;
 	}
 }

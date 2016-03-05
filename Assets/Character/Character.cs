@@ -5,8 +5,8 @@ using System.Collections;
 public class Character : MonoBehaviour
 {
     // Trial
-    GameObject colFolder;
-    private int index = 1;
+    
+
     private float trailTime; //For the length of trail and time trailColliders exist
     private bool item = false;
 
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
     GameManager manager;
 
     // Rigibody
-    Rigidbody rigidbody;
+    public Rigidbody rigidbody;
 
     // This is what dictates the distance you travel every kep press. Currently set to one down below. Initialized to 999 to avoid issues.
     float stop = 999f;
@@ -38,7 +38,9 @@ public class Character : MonoBehaviour
     {
         // Lock at y at the start of the program.
         ylock = transform.localPosition.y;
+        
 
+        /*
         // Trial
         trailTime = 4.0f;
         TrailRenderer trail = this.gameObject.AddComponent<TrailRenderer>();
@@ -46,9 +48,9 @@ public class Character : MonoBehaviour
         trail.endWidth = 1f;
         trail.time = trailTime;
         //trail.material = AssetDatabase.GetBuiltinExtraResource<Material> ("Default-Particle.mat");
-        colFolder = new GameObject();
-        colFolder.name = "trailColliders";
+        
         InvokeRepeating("spawnCollider", 0.01f, 0.1f);
+        */
 
         /*mat = GetComponent<Renderer>().material;
         mat.mainTexture = Resources.Load<Texture2D>("tileWall");   //in case we want to add a texture for testing
@@ -62,7 +64,15 @@ public class Character : MonoBehaviour
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
 
 
+        managerObject = GameObject.Find("manager");
+        manager = managerObject.gameObject.GetComponent<GameManager>();
+    }
 
+    public bool isOccupied(int x, int y)
+    {
+        print(manager.tile_matrix[y, x]);
+        bool hold = manager.tile_matrix[y, x].occupied;
+        return hold;
     }
 
     public void Move()
@@ -71,57 +81,61 @@ public class Character : MonoBehaviour
         turnLock = true;
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            direction = 2;
-            // Setting distance to travel per key press to + 1 of your current location.
-            this.transform.localEulerAngles = new Vector3(45, 0, 0);
-            stop = Mathf.Round(transform.localPosition.x + 1);
-            rigidbody.velocity = transform.right * Time.deltaTime * speed;
+            // This statement is part of the system I built for collision detection to walls and objects.
+            // It operates on the grid basis. You can either go to a grid or not, there's no in between. 
+            if (isOccupied((int)Mathf.Round(transform.localPosition.x + 1), (int)Mathf.Round(transform.localPosition.z)) == false)
+            {
+                //manager.unPause();
+                direction = 2;
+                // Setting distance to travel per key press to + 1 of your current location.
+                this.transform.localEulerAngles = new Vector3(45, 0, 0);
+                stop = Mathf.Round(transform.localPosition.x + 1);
+                this.transform.localScale = new Vector3(2, transform.localScale.y, transform.localScale.z);
+                rigidbody.velocity = transform.right * Time.deltaTime * speed;
 
-            animator.Play("walking-side");
+                animator.Play("walking-side");
+                
+            }
         }
 
 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            direction = 4;
-            stop = Mathf.Round(transform.localPosition.x - 1);
-            this.transform.localEulerAngles = new Vector3(-45, 180, 0);
-            rigidbody.velocity = transform.right * Time.deltaTime * speed;
-            animator.Play("walking-side");
+            if (isOccupied((int)Mathf.Round(transform.localPosition.x - 1), (int)Mathf.Round(transform.localPosition.z)) == false)
+            {
+                direction = 4;
+                stop = Mathf.Round(transform.localPosition.x - 1);
+                // Flipping horizontally
+                this.transform.localScale = new Vector3(-2, transform.localScale.y, transform.localScale.z);
+                rigidbody.velocity = -transform.right * Time.deltaTime * speed;
+                animator.Play("walking-side");
+            }
         }
 
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            direction = 3;
-            stop = Mathf.Round(transform.localPosition.z + 1);
-            rigidbody.velocity = transform.forward * Time.deltaTime * speed;
-            animator.Play("walking-front");
+            if (isOccupied((int)Mathf.Round(transform.localPosition.x), (int)Mathf.Round(transform.localPosition.z + 1)) == false)
+            {
+                direction = 3;
+                stop = Mathf.Round(transform.localPosition.z + 1);
+                rigidbody.velocity = transform.forward * Time.deltaTime * speed;
+                animator.Play("walking-front");
+            }
         }
 
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            direction = 1;
-            stop = Mathf.Round(transform.localPosition.z - 1);
-            rigidbody.velocity = -transform.forward * Time.deltaTime * speed;
-            animator.Play("walking-front");
+            if (isOccupied((int)Mathf.Round(transform.localPosition.x), (int)Mathf.Round(transform.localPosition.z - 1)) == false)
+            {
+                direction = 1;
+                stop = Mathf.Round(transform.localPosition.z - 1);
+                rigidbody.velocity = -transform.forward * Time.deltaTime * speed;
+                animator.Play("walking-front");
+            }
         }
     }
 
-
-    void spawnCollider()
-    {
-        GameObject colObject = new GameObject();
-        colObject.transform.parent = colFolder.transform;
-        colObject.name = index.ToString();
-        index++;
-        colObject.transform.position = this.gameObject.transform.position;
-        BoxCollider col = colObject.AddComponent<BoxCollider>();
-        col.size = new Vector2(1f, 1f);
-        col.isTrigger = true;
-        //		colObject.tag = "Scent";
-
-        StartCoroutine(destroyCollider(colObject, trailTime));
-    }
+    
     IEnumerator destroyCollider(GameObject col, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
@@ -142,6 +156,7 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.RightArrow))
                 {
                     animator.Play("idle");
+                    //manager.Pause();
                 }
             }
         }
@@ -155,8 +170,9 @@ public class Character : MonoBehaviour
                 turnLock = false;
                 if (!Input.GetKey(KeyCode.LeftArrow))
                 {
-
+                    
                     animator.Play("idle");
+                    //manager.Pause();
                 }
             }
         }
@@ -170,6 +186,7 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.UpArrow))
                 {
                     animator.Play("idle");
+                    //manager.Pause();
                 }
             }
         }
@@ -184,6 +201,7 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.DownArrow))
                 {
                     animator.Play("idle");
+                   //    manager.Pause();
                 }
             }
         }

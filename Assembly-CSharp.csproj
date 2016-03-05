@@ -49,6 +49,7 @@
      <Compile Include="Assets\Environment\Door.cs" />
      <Compile Include="Assets\Environment\Pond.cs" />
      <Compile Include="Assets\Environment\PressurePlate.cs" />
+     <Compile Include="Assets\Environment\ScentModel.cs" />
      <Compile Include="Assets\Environment\Spotlight.cs" />
      <Compile Include="Assets\Environment\Tile.cs" />
      <Compile Include="Assets\Environment\TileModel.cs" />
