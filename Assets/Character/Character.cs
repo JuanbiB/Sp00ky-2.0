@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
     // Rigibody
     public Rigidbody rigidbody;
 
-    // This is what dictates the distance you travel every kep press. Currently set to one down below. Initialized to 999 to avoid issues.
+    // This is what dictates the distance you travel every key press. Currently set to one down below. Initialized to 999 to avoid issues.
     float stop = 999f;
 
     void Start()

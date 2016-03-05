@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
         scent_colliders.name = "Scent";
 
         makeGrid ();
-       // Pause();
+        //Pause();                    //PAUSING
 	}
 	// TODO:
         // All of the guard's AI
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour {
                || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow))
             {
                 // We only want this to happen once.
-                //unPause();
+                //unPause();                                          //UNPAUSING
                 player.Move();
                 
                 foreach (GameObject go in guards)

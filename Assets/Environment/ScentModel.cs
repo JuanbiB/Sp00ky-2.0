@@ -13,7 +13,12 @@ public class ScentModel : MonoBehaviour {
         transform.localEulerAngles = new Vector3(90, 0, 0);
         name = "Scent Model";
 
-        GetComponent<Renderer>().material = (Material)Resources.Load("Materials/stank", typeof(Material));
+        mat = this.gameObject.GetComponent<Renderer>().material;
+        mat.mainTexture = Resources.Load<Texture2D>("Materials/Stank");
+        mat.color = new Color(1, 1, 1);
+        mat.shader = Shader.Find("Sprites/Default");
+
+        //GetComponent<Renderer>().material = (Material)Resources.Load("Materials/Stank", typeof(Material));
     }
 	
 	// Update is called once per frame
