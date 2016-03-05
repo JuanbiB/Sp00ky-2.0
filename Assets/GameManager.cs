@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour {
 	GameObject playerObject;
 	Character player;
 
-	bool turnLock = false;
+    // Getting all guards
+    GameObject[] guards;
+
 	float clock = 0f;
 	float turn_duration = 0.5f;
 
@@ -39,34 +41,35 @@ public class GameManager : MonoBehaviour {
 		// Obtaining the player. 
 		playerObject = GameObject.Find ("skeleton");
 		player = playerObject.GetComponent<Character> ();
+
+        // This gets all current active guards on the scene (prior to pressing play).
+        guards = GameObject.FindGameObjectsWithTag("Dog");
+       
 				
 		makeGrid ();
 	}
-	
+	// TODO:
+        // All of the guard's AI
+        // Collision with objects.
+        // Tile textures and behaviors. 
+
 	void Update () {
-
-		if (turnLock == true) {
-			turnClock ();
-		}
-
-		if (turnLock == false) {
-			// Wait for player input, when it happens, initiate 1 'Turn' in the game world.
-			if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.RightArrow)
-			   || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.LeftArrow)) {
-
-				// We only want this to happen once.
-				player.Move ();
-				//turnLock = true;
-			}
-		}
-	}
-
-	void turnClock(){
-		clock += Time.deltaTime * 1;
-		if (clock > turn_duration) {
-			turnLock = false;
-			clock = 0f;
-		}
+        // The player controls this. It'll unlock after 1 unit of traversal has been complete.
+        if (player.turnLock == false)
+        {
+            // Wait for player input, when it happens, initiate 1 'Turn' in the game world.
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)
+               || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                // We only want this to happen once.
+                player.Move();
+                
+                foreach (GameObject go in guards)
+                {
+                    go.GetComponent<Dog>().Move();
+                }
+            }
+        }
 	}
 
 	void makeGrid(){

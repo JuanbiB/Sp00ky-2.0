@@ -44,12 +44,14 @@ public class Guard : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        this.transform.eulerAngles = new Vector3(45, 0, 0);
+       // this.transform.eulerAngles = new Vector3(45, 0, 0);
 		currentState.UpdateState();
-	}
+
+        currentState = patrolState;
+    }
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		currentState.OnTriggerEnter (other);
+		//currentState.OnTriggerEnter (other);
 	}
 }

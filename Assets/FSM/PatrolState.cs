@@ -16,7 +16,7 @@ public class PatrolState : IState
 	
 	public void UpdateState()
 	{
-		Look ();
+	//	Look ();
 		Patrol ();
 	}
 	
@@ -89,7 +89,7 @@ public class PatrolState : IState
         float waypoint_math = enemy.wayPoints[nextWayPoint].position.x;
         float player_math = enemy.transform.position.x;
 
-        enemy.gameObject.GetComponent<Animator>().Play("dog-walking");
+        enemy.gameObject.GetComponent<Animator>().Play("walking-dog");
 
         if (waypoint_math < player_math)
         {

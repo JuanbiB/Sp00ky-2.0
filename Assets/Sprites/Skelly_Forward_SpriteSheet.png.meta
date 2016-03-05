@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6ed239d032bb1430e9b0ab1f2d74f836
-timeCreated: 1457060914
+timeCreated: 1457131164
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,144 +65,93 @@ TextureImporter:
     - name: Skelly_Forward_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 28
+        x: 27
         y: 9
-        width: 54
-        height: 78
+        width: 55
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 13, y: 39}
-        - {x: -19, y: 39}
-        - {x: -27, y: 20}
-        - {x: -27, y: -38}
-        - {x: 13, y: -38}
-        - {x: 26, y: -28}
-        - {x: 27, y: -25}
-        - {x: 27, y: 27}
+      - - {x: 16.5, y: 40}
+        - {x: -16.5, y: 40}
+        - {x: -27.5, y: 17}
+        - {x: -27.5, y: -15}
+        - {x: -26.5, y: -16}
+        - {x: -18.5, y: -18}
+        - {x: -22.5, y: -39}
+        - {x: 17.5, y: -39}
+        - {x: 27.5, y: -28}
+        - {x: 27.5, y: 3}
+        - {x: 20.5, y: 38}
     - name: Skelly_Forward_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 125
-        y: 29
-        width: 41
-        height: 60
+        x: 120
+        y: 9
+        width: 55
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -13.5, y: 30}
-        - {x: -20.5, y: 28}
-        - {x: -20.5, y: -30}
-        - {x: 19.5, y: -30}
-        - {x: 20.5, y: -26}
-        - {x: 20.5, y: 29}
-        - {x: 19.5, y: 30}
+      - - {x: -18.5, y: 40}
+        - {x: -24.5, y: 25}
+        - {x: -24.5, y: -12}
+        - {x: -22.5, y: -13}
+        - {x: -15.5, y: -13}
+        - {x: -11.5, y: -4}
+        - {x: -15.5, y: -14}
+        - {x: -22.5, y: -39}
+        - {x: 19.5, y: -39}
+        - {x: 20.5, y: -34}
+        - {x: 20.5, y: 23}
+        - {x: 11.5, y: 40}
     - name: Skelly_Forward_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 210
-        y: 30
-        width: 53
-        height: 58
+        x: 208
+        y: 10
+        width: 55
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 12.5, y: 29}
-        - {x: -15.5, y: 29}
-        - {x: -26.5, y: -1}
-        - {x: -26.5, y: -25}
-        - {x: -15.5, y: -21}
-        - {x: -11.5, y: -29}
-        - {x: 26.5, y: -29}
-        - {x: 26.5, y: 7}
-        - {x: 17.5, y: 27}
+      - - {x: 20.5, y: 37}
+        - {x: 15.5, y: 40}
+        - {x: -15.5, y: 40}
+        - {x: -27.5, y: 15}
+        - {x: -27.5, y: -15}
+        - {x: -25.5, y: -16}
+        - {x: -17.5, y: -19}
+        - {x: -17.5, y: -39}
+        - {x: 18.5, y: -39}
+        - {x: 27.5, y: -27}
+        - {x: 27.5, y: 2}
     - name: Skelly_Forward_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 307
-        y: 27
-        width: 41
-        height: 60
+        x: 298
+        y: 9
+        width: 55
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -18.5, y: 30}
+      - - {x: 23.5, y: -16}
+        - {x: 24.5, y: -14}
+        - {x: 24.5, y: 13}
+        - {x: 14.5, y: 40}
+        - {x: -16.5, y: 40}
         - {x: -20.5, y: 27}
-        - {x: -20.5, y: -21}
-        - {x: -14.5, y: -30}
-        - {x: 20.5, y: -30}
-        - {x: 20.5, y: 28}
-        - {x: 16.5, y: 30}
-    - name: Skelly_Forward_SpriteSheet_6
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 16
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: Skelly_Forward_SpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 12
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: Skelly_Forward_SpriteSheet_8
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 13
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: Skelly_Forward_SpriteSheet_9
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 13
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: Skelly_Forward_SpriteSheet_10
-      rect:
-        serializedVersion: 2
-        x: 314
-        y: 10
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: Skelly_Forward_SpriteSheet_11
-      rect:
-        serializedVersion: 2
-        x: 331
-        y: 14
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+        - {x: -20.5, y: -23}
+        - {x: -14.5, y: -40}
+        - {x: 1.5, y: -40}
+        - {x: 12.5, y: -38}
+        - {x: 14.5, y: -32}
+        - {x: 12.5, y: -16}
     outline: []
   spritePackingTag: 
   userData: 

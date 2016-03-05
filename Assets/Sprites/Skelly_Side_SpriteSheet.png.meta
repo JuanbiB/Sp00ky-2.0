@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 7bafc84305eff4319868e9d0422a5050
-timeCreated: 1457038921
+timeCreated: 1457131348
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Skelly_Side_SpriteSheet_0
+    21300002: Skelly_Side_SpriteSheet_1
+    21300004: Skelly_Side_SpriteSheet_2
+    21300006: Skelly_Side_SpriteSheet_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,26 +34,138 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Skelly_Side_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 6
+        width: 46
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 42.5}
+        - {x: -13, y: 41.5}
+        - {x: -17, y: 39.5}
+        - {x: -17, y: -41.5}
+        - {x: 14, y: -41.5}
+        - {x: 14, y: 39.5}
+        - {x: 11, y: 42.5}
+    - name: Skelly_Side_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 3
+        width: 52
+        height: 88
+      alignment: 9
+      pivot: {x: 0.4067597, y: 0.50918275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30.848495, y: -31.808083}
+        - {x: 30.848495, y: -27.808083}
+        - {x: 27.848495, y: -26.808083}
+        - {x: 19.848495, y: -1.8080826}
+        - {x: 20.848495, y: 43.191917}
+        - {x: -16.151505, y: 43.191917}
+        - {x: -19.151505, y: 17.191917}
+        - {x: -20.151505, y: -15.808083}
+        - {x: -6.1515045, y: -16.808083}
+        - {x: -5.1515045, y: -14.808083}
+        - {x: -6.1515045, y: -5.8080826}
+        - {x: -7.1515045, y: -2.8080826}
+        - {x: -5.1515045, y: 5.1919174}
+        - {x: -4.1515045, y: -15.808083}
+        - {x: -19.151505, y: -26.808083}
+        - {x: -21.151505, y: -29.808083}
+        - {x: -21.151505, y: -32.808083}
+        - {x: -15.1515045, y: -38.808083}
+        - {x: -13.1515045, y: -38.808083}
+        - {x: -10.1515045, y: -35.808083}
+        - {x: 14.8484955, y: -38.808083}
+        - {x: 26.848495, y: -38.808083}
+    - name: Skelly_Side_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 6
+        width: 43
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 42.5}
+        - {x: -13.5, y: 41.5}
+        - {x: -17.5, y: 33.5}
+        - {x: -17.5, y: -41.5}
+        - {x: 12.5, y: -41.5}
+        - {x: 13.5, y: -38.5}
+        - {x: 13.5, y: 41.5}
+        - {x: 12.5, y: 42.5}
+    - name: Skelly_Side_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 7
+        width: 50
+        height: 85
+      alignment: 9
+      pivot: {x: 0.3756796, y: 0.50313216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31.216003, y: -35.766235}
+        - {x: 31.216003, y: -29.766235}
+        - {x: 29.216003, y: -28.766235}
+        - {x: 21.216003, y: 0.23376465}
+        - {x: 6.2160034, y: 14.233765}
+        - {x: 4.2160034, y: 15.233765}
+        - {x: 5.2160034, y: 15.233765}
+        - {x: 8.216003, y: 12.233765}
+        - {x: 14.216003, y: 12.233765}
+        - {x: 18.216003, y: 13.233765}
+        - {x: 18.216003, y: 36.233765}
+        - {x: 11.216003, y: 42.233765}
+        - {x: -2.7839966, y: 42.233765}
+        - {x: -18.783997, y: 33.233765}
+        - {x: -18.783997, y: 21.233765}
+        - {x: -14.783997, y: -14.766235}
+        - {x: -10.783997, y: -18.766235}
+        - {x: -5.7839966, y: -18.766235}
+        - {x: -3.7839966, y: -16.766235}
+        - {x: -4.7839966, y: -7.7662354}
+        - {x: -5.7839966, y: -4.7662354}
+        - {x: -3.7839966, y: 3.2337646}
+        - {x: -2.7839966, y: -17.766235}
+        - {x: -17.783997, y: -28.766235}
+        - {x: -18.783997, y: -29.766235}
+        - {x: -18.783997, y: -35.766235}
+        - {x: -13.783997, y: -40.766235}
+        - {x: -11.783997, y: -40.766235}
+        - {x: -8.783997, y: -37.766235}
+        - {x: 16.216003, y: -40.766235}
+        - {x: 28.216003, y: -40.766235}
     outline: []
   spritePackingTag: 
   userData: 
