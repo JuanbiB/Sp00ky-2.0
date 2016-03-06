@@ -34,6 +34,9 @@ public class Character : MonoBehaviour
     // This is what dictates the distance you travel every key press. Currently set to one down below. Initialized to 999 to avoid issues.
     float stop = 999f;
 
+    // Pausing mechanism.
+    public bool char_pause = false;
+
     void Start()
     {
         // Lock at y at the start of the program.
@@ -70,7 +73,6 @@ public class Character : MonoBehaviour
 
     public bool isOccupied(int x, int y)
     {
-        print(manager.tile_matrix[y, x]);
         bool hold = manager.tile_matrix[y, x].occupied;
         return hold;
     }
@@ -79,6 +81,7 @@ public class Character : MonoBehaviour
     {
         // Do stuff
         turnLock = true;
+        char_pause = false;
         if (Input.GetKey(KeyCode.RightArrow))
         {
             // This statement is part of the system I built for collision detection to walls and objects.
@@ -156,7 +159,7 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.RightArrow))
                 {
                     animator.Play("idle");
-                    //manager.Pause();
+                    manager.paused = true;
                 }
             }
         }
@@ -172,7 +175,7 @@ public class Character : MonoBehaviour
                 {
                     
                     animator.Play("idle");
-                    //manager.Pause();
+                    manager.paused = true;
                 }
             }
         }
@@ -186,7 +189,7 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.UpArrow))
                 {
                     animator.Play("idle");
-                    //manager.Pause();
+                    manager.paused = true;
                 }
             }
         }
@@ -201,21 +204,10 @@ public class Character : MonoBehaviour
                 if (!Input.GetKey(KeyCode.DownArrow))
                 {
                     animator.Play("idle");
-                   //    manager.Pause();
+                    manager.paused = true;
                 }
             }
         }
-
-        // Direction toon's facing
-        if (true == true)
-        {
-            //transform.eulerAngles = new Vector3(45, 0, 0);
-        }
-        else
-        {
-            //transform.eulerAngles = new Vector3(-45, 180, 0);
-        }
-
 
         // Locking y, it should never change.
         transform.localPosition = new Vector3(transform.localPosition.x, ylock, transform.localPosition.z);

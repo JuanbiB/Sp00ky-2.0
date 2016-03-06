@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
 	string itemText = "You're Holding Nothing";
 
+    public bool paused = false;
+
 	void Start () {
 		// Setting up the manager
 		this.gameObject.tag = "Game Controller";
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour {
         // Tile textures and behaviors. 
 
 	void Update () {
+        
         // The player controls this. It'll unlock after 1 unit of traversal has been complete.
         if (player.turnLock == false)
         {
@@ -69,7 +72,7 @@ public class GameManager : MonoBehaviour {
                || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow))
             {
                 // We only want this to happen once.
-                //unPause();                                          //UNPAUSING
+                paused = false;                                     //UNPAUSING
                 player.Move();
                 
                 foreach (GameObject go in guards)
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour {
                     go.GetComponent<Dog>().Move();
                 }
             }
+          
         }
 	}
 
