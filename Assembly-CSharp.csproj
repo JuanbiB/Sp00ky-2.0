@@ -64,6 +64,7 @@
      <Compile Include="Assets\Items\Bone.cs" />
      <Compile Include="Assets\Items\Steak.cs" />
      <Compile Include="Assets\Items\SteakModel.cs" />
+     <Compile Include="Assets\LoadOnClick.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
