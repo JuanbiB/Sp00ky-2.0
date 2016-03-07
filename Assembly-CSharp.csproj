@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Character\Character.cs" />
      <Compile Include="Assets\Environment\Door.cs" />
+     <Compile Include="Assets\Environment\Exit.cs" />
      <Compile Include="Assets\Environment\Pond.cs" />
      <Compile Include="Assets\Environment\PressurePlate.cs" />
      <Compile Include="Assets\Environment\ScentModel.cs" />

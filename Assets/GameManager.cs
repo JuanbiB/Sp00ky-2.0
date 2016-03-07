@@ -7,6 +7,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+
 	// Have to create list to hold all the tiles
 	List<Tile> tiles;
 	GameObject tileFolder;
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour {
 		this.gameObject.tag = "Game Controller";
         this.name = "manager";
 
-		// Creating our grid and matrix
+        // Creating our grid and matrix
 		tile_matrix = new Tile [16, 21];
 		tiles = new List<Tile> ();
 		tileFolder = new GameObject ();

@@ -7,15 +7,16 @@ public class Bone : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        manager = GameObject.Find("manager");
+        
 	}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            manager = GameObject.Find("manager");
             other.gameObject.GetComponent<Character>().hasBone = true;
-            manager.SendMessage("UpdateGUI", "Bone");
+            manager.GetComponent<GameManager>().SendMessage("UpdateGUI", "Bone");
             Destroy(this.gameObject);
         }
     }
