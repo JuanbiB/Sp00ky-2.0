@@ -18,11 +18,15 @@ public class Exit : MonoBehaviour {
             {
                 SceneManager.LoadScene(4);
             }
+            if (SceneManager.GetActiveScene().name == "Level 2")
+            {
+                SceneManager.LoadScene(5);
+            }
             //TODO
             //Add scene transitions for rest of levels
-            
+
             //Debug.Log("You win!");
-            
+
         }
     }
 

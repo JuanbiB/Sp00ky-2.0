@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
 
     // Inventory
     public bool hasBone = false;
+    public bool hasSteak = false;
 
     // Animations
     public Animator animator;
@@ -149,6 +150,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // To the right
         if (direction == 2)
         {
@@ -211,19 +213,30 @@ public class Character : MonoBehaviour
 
         // Locking y, it should never change.
         transform.localPosition = new Vector3(transform.localPosition.x, ylock, transform.localPosition.z);
+        //Dropping Item
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (hasSteak)
+            {
+                useSteak();
+            }
+        }
     }
 
-    void gotSteak()
+    /*void gotSteak()
     {
         item = true;
         GameObject GameManager = GameObject.FindGameObjectWithTag("Game Controller");
         GameManager.SendMessage("UpdateGUI", "Steak");
-    }
+    }*/
 
     void useSteak()
     {
-        item = false;
+        hasSteak = false;
         GameObject GameManager = GameObject.FindGameObjectWithTag("Game Controller");
         GameManager.SendMessage("UpdateGUI", "Nothing");
+        GameObject steakObject = new GameObject();
+        Steak steak = steakObject.AddComponent<Steak>();
+        steak.init(this.transform.localPosition.x, this.transform.localPosition.z, false);
     }
 }
