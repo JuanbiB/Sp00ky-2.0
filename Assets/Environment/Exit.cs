@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour {
 
@@ -12,8 +13,16 @@ public class Exit : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && (other.gameObject.GetComponent<Character>().hasBone == true))
         {
-            //Go to next scene
-            Debug.Log("You win!");
+            
+            if(SceneManager.GetActiveScene().name=="Level 1")
+            {
+                SceneManager.LoadScene(4);
+            }
+            //TODO
+            //Add scene transitions for rest of levels
+            
+            //Debug.Log("You win!");
+            
         }
     }
 
