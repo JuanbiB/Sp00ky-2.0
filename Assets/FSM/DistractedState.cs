@@ -7,6 +7,7 @@ public class DistractedState : IState
 	public float start;
 	private readonly Guard enemy;
 	private float delayTime = 3.0f;
+    public int currentTurn;
 
 	public DistractedState (Guard guard)
 	{
@@ -60,8 +61,11 @@ public class DistractedState : IState
 	
 	private void Busy()
 	{
-		if (Time.time - start >= 3.0f) {
-			ToPatrolState ();
-		}
+        GameObject manager = GameObject.Find("manager");
+        if (manager.GetComponent<GameManager>().turnsPassed - currentTurn > 5)
+        {
+            ToPatrolState();
+        }
+		
 	}
 }

@@ -7,6 +7,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    // Keeping track of how many turns have passed
+    public int turnsPassed = 0;
+
 	// Have to create list to hold all the tiles
 	List<Tile> tiles;
 	GameObject tileFolder;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour {
 	float turn_duration = 0.5f;
 
 	string itemText = "You're Holding Nothing";
+    string loseText = "";
 
     public bool paused = false;
 
@@ -41,7 +45,7 @@ public class GameManager : MonoBehaviour {
 		this.gameObject.tag = "Game Controller";
         this.name = "manager";
 
-		// Creating our grid and matrix
+        // Creating our grid and matrix
 		tile_matrix = new Tile [16, 21];
 		tiles = new List<Tile> ();
 		tileFolder = new GameObject ();
@@ -78,7 +82,9 @@ public class GameManager : MonoBehaviour {
             {
                 // We only want this to happen once.
                 paused = false;                                     //UNPAUSING
+                Vector3 tempPos = player.transform.position;
                 player.Move();
+<<<<<<< HEAD
 		//		print (scentList.Count);
 				foreach (GameObject go in guards)
 				{
@@ -92,6 +98,16 @@ public class GameManager : MonoBehaviour {
 //					}
 					guard.Update();
 				}
+=======
+                
+
+                foreach (GameObject go in guards)
+                {
+                    go.GetComponent<Dog>().Move();
+                }
+                turnsPassed++;
+                
+>>>>>>> origin/master
             }
         }
 	}
@@ -125,9 +141,22 @@ public class GameManager : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.Label (new Rect (100, 70, 100, 50), itemText);
+        GUI.Label(new Rect(200, 70, 100, 50), loseText);
 	}
 
-	public void Pause(){
+    void gameOver()
+    {
+        //Time.timeScale = 0;
+        loseText = "Game Over =(";
+        StartCoroutine(reloadLevel());
+    }
+    IEnumerator reloadLevel()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Pause(){
 		Time.timeScale = 0;
 	}
 
