@@ -62,7 +62,7 @@ public class DistractedState : IState
 	private void Busy()
 	{
         GameObject manager = GameObject.Find("manager");
-        if (manager.GetComponent<GameManager>().turnsPassed - currentTurn > 5)
+        if (manager.GetComponent<GameManager>().turnsPassed - currentTurn > 3)
         {
             ToPatrolState();
         }

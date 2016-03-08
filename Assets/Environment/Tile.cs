@@ -60,13 +60,13 @@ public class Tile : MonoBehaviour {
                 Color changing = new Color(normal.r, normal.g, normal.b, fade_counter * 0.5f);
                 scent_model.gameObject.GetComponent<Renderer>().material.color = changing;
 
-                if (fade_counter * 0.5f < 0)
+                if (fade_counter * 0.7f < 0)
                 {
                     hasScent = false;
                     fade_counter = 3f;
-					print ("count before " + manager.scentList.Count);
+				//	print ("count before " + manager.scentList.Count);
 					manager.scentList.Remove (this.colObject);
-					print ("count before " + manager.scentList.Count);
+				//	print ("count before " + manager.scentList.Count);
                     Destroy(colObject.gameObject);
                 }
             }
@@ -105,7 +105,7 @@ public class Tile : MonoBehaviour {
 
 		if (coll.tag == "Player" && occupied == true) {
 			//print("cant come thru here!");
-		} else if (coll.tag == "Player") {//|| coll.tag == "wall")
+		} else if (coll.tag == "Player" && manager.player.genScent == true) {//|| coll.tag == "wall")
 			//print("Hey, I'm tile at " + x + " and " + y + " and skelly just entered me.");
 			if (hasScent == false) {
 				spawnCollider ();

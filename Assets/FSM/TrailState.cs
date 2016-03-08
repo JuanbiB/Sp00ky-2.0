@@ -20,7 +20,7 @@ public class TrailState : IState
 
 	public int index;
 
-	public int counter = -5;
+	public int counter = -6;
 
 	public TrailState (Guard guard)
 	{
@@ -41,8 +41,8 @@ public class TrailState : IState
 
 	public void OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.tag == "Cover") {
-			enemy.distractedState.start = Time.time;
+		if (other.gameObject.tag == "Pond") {
+			enemy.distractedState.currentTurn = enemy.manager.turnsPassed;
 			ToDistractedState ();
 		}
 		//Debug.Log ("Test");
@@ -94,18 +94,20 @@ public class TrailState : IState
 		//index = 0;
 
 		if(onEnter){
-			Debug.Log ("on enter");
+			//Debug.Log ("on enter");
 
 		
 			for (int i = 0; i < enemy.manager.scentList.Count; i++) {
 				if (enemy.manager.scentList [i].Equals (curTile)) {
-					Debug.Log ("Equals!");
+				//	Debug.Log ("Equals!");
 					index = i;
-					Debug.Log ("index" + i);
+					//Debug.Log ("index" + i);
 				}
 			}
 			//int index = enemy.manager.scentList. (curTile);
 			nextTile = curTile;
+			Debug.Log (nextTile.transform.parent);
+			enemy.pathTraveled.Add (nextTile.transform.parent);
 			nextTile.transform.position = new Vector3 (nextTile.transform.position.x, nextTile.transform.position.y + .3f, nextTile.transform.position.z);
 			onEnter = false;
 		}
@@ -116,7 +118,7 @@ public class TrailState : IState
 		{
 			if (locked == false) {
 				counter++;
-				Debug.Log ("index " + index);
+			//	Debug.Log ("index " + index);
 
 				//	Debug.Log ("stuff " + index);
 				if (counter > 2) {
@@ -129,6 +131,7 @@ public class TrailState : IState
 					nextTile = enemy.manager.playerObject;
 				} else {
 					nextTile = enemy.manager.scentList [index];
+					enemy.pathTraveled.Add (nextTile.transform.parent);
 					nextTile.transform.position = new Vector3 (nextTile.transform.position.x, nextTile.transform.position.y + .3f, nextTile.transform.position.z);
 				}
 				locked = true;
@@ -145,6 +148,7 @@ public class TrailState : IState
 
 		enemy.animation.Play ("walking-dog");
 		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, nextTile.transform.position, 0.02f);
+		Debug.Log (enemy.pathTraveled.Count);
 	}
 		
 }

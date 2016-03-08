@@ -38,7 +38,7 @@ public class PatrolState : IState
 	
 	public void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("aslkdfj");
+		//Debug.Log ("aslkdfj");
 		if (other.CompareTag ("Scent")) {
 			Debug.Log ("Enter scent");
 			enemy.trailState.curTile = other.gameObject;
@@ -86,42 +86,52 @@ public class PatrolState : IState
 	
 	void Patrol()
 	{	
-		waypoint_position = enemy.wayPoints [nextWayPoint].gameObject.transform;
-		if (once == false) {
-			if (nextWayPoint == enemy.wayPoints.Length - 1) {
-				reverse = true;
-			}
-			if (nextWayPoint == 0) {
-				reverse = false; 
-			}
-			if (reverse) {
-				nextWayPoint--;
-				//	Debug.Log(nextWayPoint);
-			} else {
-				nextWayPoint++;
-				//	Debug.Log(nextWayPoint);
-			}
-
+		if (enemy.pathTraveled.Count < 0) {
+			int ind = enemy.pathTraveled.Count - 1;
+			waypoint_position = enemy.pathTraveled [ind].transform;
+			Debug.Log( enemy.pathTraveled [ind].transform);
+			enemy.pathTraveled.RemoveAt (ind);
 			//newDir = (waypoint_position.position - enemy.transform.position).normalized * 1.0f;
 			once = true;
-		}
-
-
-		Vector3 calculations = enemy.transform.position - waypoint_position.transform.position;
-
-		if (calculations.magnitude == 0f) {
-			enemy.animation.Play ("idle");
 		} else {
+			waypoint_position = enemy.wayPoints [nextWayPoint].gameObject.transform;
+			if (once == false) {
+				if (nextWayPoint == enemy.wayPoints.Length - 1) {
+					reverse = true;
+				}
+				if (nextWayPoint == 0) {
+					reverse = false; 
+				}
+				if (reverse) {
+					nextWayPoint--;
+					//	Debug.Log(nextWayPoint);
+				} else {
+					nextWayPoint++;
+					//	Debug.Log(nextWayPoint);
+				}
 
-			if (enemy.transform.position.x < waypoint_position.position.x) {
-				enemy.transform.localScale = new Vector3 (-Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
-			} else {
-				enemy.transform.localScale = new Vector3 (Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
+				//newDir = (waypoint_position.position - enemy.transform.position).normalized * 1.0f;
+				once = true;
 			}
-			enemy.animation.Play ("walking-dog");
+
+
+			Vector3 calculations = enemy.transform.position - waypoint_position.transform.position;
+
+			if (calculations.magnitude == 0f) {
+				enemy.animation.Play ("idle");
+			} else {
+
+				if (enemy.transform.position.x < waypoint_position.position.x) {
+					enemy.transform.localScale = new Vector3 (-Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
+				} else {
+					enemy.transform.localScale = new Vector3 (Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
+				}
+				enemy.animation.Play ("walking-dog");
+			}
+
+
+		
 		}
-
-
 		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, waypoint_position.position, 0.02f);
-	}
+	}			
 }

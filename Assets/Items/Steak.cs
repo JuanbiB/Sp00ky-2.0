@@ -7,20 +7,24 @@ public class Steak : MonoBehaviour {
 	private SteakModel model;
 	private Vector3 position;
     private GameObject manager;
+	public float x;
+	public float z;
 
     // Use this for initialization
     public void init(float x, float z, bool interactable)
     {
         print(x);
         print(z);
+		this.x = x;
+		this.z = z;
 		this.gameObject.transform.position = new Vector3 (x, 0.5f, z);
         this.gameObject.transform.eulerAngles = new Vector3(45, 0);
-        if (interactable)
-        {
+        
+       
             col = this.gameObject.AddComponent<BoxCollider>();
-            col.size = new Vector2(1, 1);
+            col.size = new Vector2(2, 1);
             col.center = new Vector3(x, 0, z);
-        }
+        
 
 		var modelObject = GameObject.CreatePrimitive(PrimitiveType.Quad);  
 		model = modelObject.AddComponent<SteakModel>();                  
@@ -37,12 +41,14 @@ public class Steak : MonoBehaviour {
 	public void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player") {
-            if (other.gameObject.tag == "Player")
+			if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<Character>().canSteak)
             {
+				print ("steak");
+				other.gameObject.GetComponent<Character> ().canSteak = false;
                 manager = GameObject.Find("manager");
                 other.gameObject.GetComponent<Character>().hasSteak = true;
                 manager.GetComponent<GameManager>().SendMessage("UpdateGUI", "Steak");
-                Destroy(this.gameObject);
+				this.gameObject.transform.position = new Vector3 (x, -2, z);
             }
         }
 	}

@@ -6,6 +6,9 @@ public class Character : MonoBehaviour
 {
     // Trial
     
+	public bool genScent = true;
+	public int turnBeg;
+
 
     private float trailTime; //For the length of trail and time trailColliders exist
     private bool item = false;
@@ -13,6 +16,7 @@ public class Character : MonoBehaviour
     // Inventory
     public bool hasBone = false;
     public bool hasSteak = false;
+	public bool canSteak = true;
 
     // Animations
     public Animator animator;
@@ -160,6 +164,9 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (manager.turnsPassed - turnBeg > 3) {
+			genScent = true; 
+		}
 
         // To the right
         if (direction == 2)
@@ -246,6 +253,12 @@ public class Character : MonoBehaviour
         {
             manager.SendMessage("gameOver");
         }
+
+		if (other.gameObject.tag == "Pond") 
+		{
+			genScent = false;
+			turnBeg = manager.turnsPassed;
+		}
     }
 
     void useSteak()
@@ -253,8 +266,12 @@ public class Character : MonoBehaviour
         hasSteak = false;
         GameObject GameManager = GameObject.FindGameObjectWithTag("Game Controller");
         GameManager.SendMessage("UpdateGUI", "Nothing");
-        GameObject steakObject = new GameObject();
-        Steak steak = steakObject.AddComponent<Steak>();
-        steak.init(this.transform.localPosition.x, this.transform.localPosition.z, false);
+		GameObject steak = GameObject.Find ("Steak");
+		steak.transform.position = new Vector3 ((float)this.transform.position.x, .5f, (float)this.transform.position.z);
+
+
+//        GameObject steakObject = new GameObject();
+//        Steak steak = steakObject.AddComponent<Steak>();
+//        steak.init(this.transform.localPosition.x, this.transform.localPosition.z, false);
     }
 }

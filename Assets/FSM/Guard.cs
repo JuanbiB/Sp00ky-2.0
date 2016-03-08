@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
 This is the script you actually attach to a guard game object.
@@ -11,6 +12,7 @@ public class Guard : MonoBehaviour
 	public float searchingDuration = 4f;
 	public float speed = 4.5f; 
 	public GameObject[] wayPoints;
+	public List<Transform> pathTraveled;
 
 	public GameObject managerObject;
 	public GameManager manager;
@@ -42,6 +44,8 @@ public class Guard : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		pathTraveled = new List<Transform> ();
+
 		this.gameObject.AddComponent<Rigidbody> ();
 		rigid_body = this.gameObject.GetComponent<Rigidbody> ();
 		rigid_body.useGravity = false;
@@ -66,7 +70,7 @@ public class Guard : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		print ("ballsack");
+	//	print ("ballsack");
 		currentState.OnTriggerEnter (other);
 	}
 
