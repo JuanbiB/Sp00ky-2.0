@@ -140,9 +140,10 @@ public class TrailState : IState
 
 		if (calculations.magnitude == 0f) {
 			locked = false;
+			enemy.animation.Play ("idle");
 		}
 
-
+		enemy.animation.Play ("walking-dog");
 		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, nextTile.transform.position, 0.01f);
 	}
 		

@@ -105,6 +105,17 @@ public class PatrolState : IState
 			once = true;
 		}
 
-		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, waypoint_position.position, 0.01f);
+
+		Vector3 calculations = enemy.transform.position - waypoint_position.transform.position;
+
+		if (calculations.magnitude == 0f) {
+			enemy.animation.Play ("idle");
+		} else {
+			
+			enemy.animation.Play ("walking-dog");
+		}
+
+
+		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, waypoint_position.position, 0.02f);
 	}
 }

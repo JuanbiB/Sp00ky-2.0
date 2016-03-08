@@ -15,6 +15,8 @@ public class Guard : MonoBehaviour
 	public GameObject managerObject;
 	public GameManager manager;
 
+	public Animator animation;
+
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public IState currentState;
 	[HideInInspector] public PatrolState patrolState;
@@ -36,8 +38,10 @@ public class Guard : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
-		managerObject = GameObject.FindGameObjectWithTag ("GameController");
+		animation = this.gameObject.GetComponent<Animator> ();
+		managerObject = GameObject.Find("manager");
+		Debug.Log (managerObject);
+		//managerObject = GameObject.Find("manager");
 		manager = managerObject.gameObject.GetComponent<GameManager> ();
 	
 		currentState = patrolState;

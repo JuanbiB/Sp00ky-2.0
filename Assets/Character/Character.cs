@@ -94,13 +94,13 @@ public class Character : MonoBehaviour
                 // Setting distance to travel per key press to + 1 of your current location.
                 this.transform.localEulerAngles = new Vector3(45, 0, 0);
                 stop = Mathf.Round(transform.localPosition.x + 1);
-<<<<<<< HEAD
-                this.transform.localScale = new Vector3(2, transform.localScale.y, transform.localScale.z);
+
+				this.transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 rigidbody.velocity = transform.right * speed;
-=======
+
                 this.transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-                rigidbody.velocity = transform.right * Time.deltaTime * speed;
->>>>>>> origin/master
+                rigidbody.velocity = transform.right * speed;
+
 
                 animator.Play("walking-side");
                 
@@ -115,13 +115,13 @@ public class Character : MonoBehaviour
                 direction = 4;
                 stop = Mathf.Round(transform.localPosition.x - 1);
                 // Flipping horizontally
-<<<<<<< HEAD
-                this.transform.localScale = new Vector3(-2, transform.localScale.y, transform.localScale.z);
+
+				this.transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 rigidbody.velocity = -transform.right * speed;
-=======
+
                 this.transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.y), transform.localScale.y, transform.localScale.z);
-                rigidbody.velocity = -transform.right * Time.deltaTime * speed;
->>>>>>> origin/master
+                rigidbody.velocity = -transform.right * speed;
+
                 animator.Play("walking-side");
             }
         }
