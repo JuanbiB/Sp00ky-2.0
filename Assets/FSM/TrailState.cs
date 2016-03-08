@@ -53,7 +53,9 @@ public class TrailState : IState
 
 	public void ToDistractedState ()
 	{
-		enemy.currentState = enemy.distractedState;
+        GameObject manager = GameObject.Find("manager");
+        enemy.distractedState.currentTurn = manager.GetComponent<GameManager>().turnsPassed;
+        enemy.currentState = enemy.distractedState;
 	}
 
 	public void ToTrailState ()

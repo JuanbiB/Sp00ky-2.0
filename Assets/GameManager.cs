@@ -7,6 +7,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    // Keeping track of how many turns have passed
+    public int turnsPassed = 0;
 
 	// Have to create list to hold all the tiles
 	List<Tile> tiles;
@@ -75,12 +77,16 @@ public class GameManager : MonoBehaviour {
             {
                 // We only want this to happen once.
                 paused = false;                                     //UNPAUSING
+                Vector3 tempPos = player.transform.position;
                 player.Move();
                 
+
                 foreach (GameObject go in guards)
                 {
                     go.GetComponent<Dog>().Move();
                 }
+                turnsPassed++;
+                
             }
           
         }
