@@ -22,6 +22,10 @@ public class Exit : MonoBehaviour {
             {
                 SceneManager.LoadScene(5);
             }
+            if (SceneManager.GetActiveScene().name == "Level 3")
+            {
+                SceneManager.LoadScene(6);
+            }
             //TODO
             //Add scene transitions for rest of levels
 
