@@ -17,6 +17,10 @@ public class Guard : MonoBehaviour
 
 	public Animator animation;
 
+	public Rigidbody rigid_body;
+	public BoxCollider our_collider;
+
+
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public IState currentState;
 	[HideInInspector] public PatrolState patrolState;
@@ -38,6 +42,13 @@ public class Guard : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		this.gameObject.AddComponent<Rigidbody> ();
+		rigid_body = this.gameObject.GetComponent<Rigidbody> ();
+		rigid_body.useGravity = false;
+
+		our_collider = this.gameObject.GetComponent<BoxCollider> ();
+		our_collider.size = new Vector3 (0.1f, 0.1f, 0.1f);
+
 		animation = this.gameObject.GetComponent<Animator> ();
 		managerObject = GameObject.Find("manager");
 		Debug.Log (managerObject);
@@ -55,6 +66,7 @@ public class Guard : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider other)
 	{
+		print ("ballsack");
 		currentState.OnTriggerEnter (other);
 	}
 

@@ -60,7 +60,7 @@ public class Tile : MonoBehaviour {
                 Color changing = new Color(normal.r, normal.g, normal.b, fade_counter * 0.5f);
                 scent_model.gameObject.GetComponent<Renderer>().material.color = changing;
 
-                if (fade_counter * 0 < -5)
+                if (fade_counter * 0.5f < 0)
                 {
                     hasScent = false;
                     fade_counter = 3f;

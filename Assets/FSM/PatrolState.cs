@@ -38,6 +38,7 @@ public class PatrolState : IState
 	
 	public void OnTriggerEnter (Collider other)
 	{
+		Debug.Log ("aslkdfj");
 		if (other.CompareTag ("Scent")) {
 			Debug.Log ("Enter scent");
 			enemy.trailState.curTile = other.gameObject;
@@ -111,7 +112,12 @@ public class PatrolState : IState
 		if (calculations.magnitude == 0f) {
 			enemy.animation.Play ("idle");
 		} else {
-			
+
+			if (enemy.transform.position.x < waypoint_position.position.x) {
+				enemy.transform.localScale = new Vector3 (-Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
+			} else {
+				enemy.transform.localScale = new Vector3 (Mathf.Abs (enemy.transform.localScale.y), enemy.transform.localScale.y, enemy.transform.localScale.z);
+			}
 			enemy.animation.Play ("walking-dog");
 		}
 

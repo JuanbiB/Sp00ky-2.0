@@ -20,7 +20,7 @@ public class TrailState : IState
 
 	public int index;
 
-	public int counter = -4;
+	public int counter = -5;
 
 	public TrailState (Guard guard)
 	{
@@ -119,7 +119,7 @@ public class TrailState : IState
 				Debug.Log ("index " + index);
 
 				//	Debug.Log ("stuff " + index);
-				if (counter > 1) {
+				if (counter > 2) {
 					index = index + 2;
 				} else {
 					index++;
@@ -144,7 +144,7 @@ public class TrailState : IState
 		}
 
 		enemy.animation.Play ("walking-dog");
-		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, nextTile.transform.position, 0.01f);
+		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, nextTile.transform.position, 0.02f);
 	}
 		
 }
