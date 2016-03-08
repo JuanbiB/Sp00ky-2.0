@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 	float turn_duration = 0.5f;
 
 	string itemText = "You're Holding Nothing";
+    string loseText = "";
 
     public bool paused = false;
 
@@ -114,9 +115,22 @@ public class GameManager : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.Label (new Rect (100, 70, 100, 50), itemText);
+        GUI.Label(new Rect(200, 70, 100, 50), loseText);
 	}
 
-	public void Pause(){
+    void gameOver()
+    {
+        //Time.timeScale = 0;
+        loseText = "Game Over =(";
+        StartCoroutine(reloadLevel());
+    }
+    IEnumerator reloadLevel()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Pause(){
 		Time.timeScale = 0;
 	}
 

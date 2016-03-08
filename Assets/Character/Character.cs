@@ -230,6 +230,14 @@ public class Character : MonoBehaviour
         GameManager.SendMessage("UpdateGUI", "Steak");
     }*/
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Dog")
+        {
+            manager.SendMessage("gameOver");
+        }
+    }
+
     void useSteak()
     {
         hasSteak = false;

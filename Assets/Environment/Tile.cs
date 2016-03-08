@@ -139,4 +139,12 @@ public class Tile : MonoBehaviour {
         }
       
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "wall")
+        {
+            occupied = false;
+        }
+    }
 }
