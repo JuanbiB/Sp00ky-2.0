@@ -51,5 +51,10 @@ public class Steak : MonoBehaviour {
 				this.gameObject.transform.position = new Vector3 (x, -2, z);
             }
         }
+		if (other.gameObject.tag == "Dog"){
+			other.gameObject.GetComponent<Guard> ().distractedState.currentTurn = other.gameObject.GetComponent<Guard> ().manager.turnsPassed;
+			other.gameObject.GetComponent<Guard> ().currentState = other.gameObject.GetComponent<Guard> ().distractedState;
+			Destroy (this.gameObject);
+		}
 	}
 }

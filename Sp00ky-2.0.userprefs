@@ -1,9 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Character/Character.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FSM\TrailState.cs">
     <Files>
-      <File FileName="Assets/GameManager.cs" Line="59" Column="7" />
-      <File FileName="Assets/Character/Character.cs" Line="137" Column="51" />
+      <File FileName="Assets\GameManager.cs" Line="22" Column="35" />
+      <File FileName="Assets\Items\Steak.cs" Line="57" Column="28" />
+      <File FileName="Assets\Character\Character.cs" Line="116" Column="10" />
+      <File FileName="Assets\Items\SteakModel.cs" Line="22" Column="1" />
+      <File FileName="Assets\Environment\Tile.cs" Line="115" Column="12" />
+      <File FileName="Assets\FSM\DistractedState.cs" Line="66" Column="10" />
+      <File FileName="Assets\FSM\PatrolState.cs" Line="89" Column="33" />
+      <File FileName="Assets\FSM\TrailState.cs" Line="80" Column="75" />
+      <File FileName="Assets\FSM\Guard.cs" Line="68" Column="1" />
+      <File FileName="Assets\Environment\Pond.cs" Line="16" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

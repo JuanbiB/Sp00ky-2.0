@@ -13,7 +13,7 @@ public class Pond : MonoBehaviour {
 
 		box_collider = this.gameObject.AddComponent<BoxCollider>();
 		box_collider.isTrigger = true;
-		box_collider.size = new Vector3(.4f, 1, 1.4f);
+		box_collider.size = new Vector3(.8f, 1, 1.4f);
 		box_collider.center = new Vector3 (0, 0, .5f);
 		box_collider.tag = "Pond";
 

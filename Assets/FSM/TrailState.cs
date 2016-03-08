@@ -45,6 +45,10 @@ public class TrailState : IState
 			enemy.distractedState.currentTurn = enemy.manager.turnsPassed;
 			ToDistractedState ();
 		}
+		if (other.gameObject.tag == "wall") {
+
+			ToPatrolState();
+		}
 		//Debug.Log ("Test");
 
 	}
