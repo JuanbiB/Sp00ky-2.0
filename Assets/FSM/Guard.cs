@@ -10,12 +10,10 @@ public class Guard : MonoBehaviour
 	public float searchingTurnSpeed = 120f;
 	public float searchingDuration = 4f;
 	public float speed = 4.5f; 
-	public float sightClose = 5f;
-	public float sightFar = 7f;
-	public float sightNarrow = 90f;
-	public float sightWide = 180f;
-	public Transform[] wayPoints;
+	public GameObject[] wayPoints;
 
+	public GameObject managerObject;
+	public GameManager manager;
 
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public IState currentState;
@@ -38,20 +36,22 @@ public class Guard : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+
+		managerObject = GameObject.FindGameObjectWithTag ("GameController");
+		manager = managerObject.gameObject.GetComponent<GameManager> ();
+	
 		currentState = patrolState;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public void Update () 
 	{
-       // this.transform.eulerAngles = new Vector3(45, 0, 0);
-		currentState.UpdateState();
-
-        currentState = patrolState;
+		currentState.UpdateState ();
     }
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		//currentState.OnTriggerEnter (other);
+		currentState.OnTriggerEnter (other);
 	}
+
 }

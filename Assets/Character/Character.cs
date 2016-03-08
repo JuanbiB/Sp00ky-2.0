@@ -22,7 +22,7 @@ public class Character : MonoBehaviour
     //Movement
     int direction = 1; // 1 = down, 2 = right, 3 = up, 4 = left
     public bool turnLock = false;
-    int speed = 150;
+    float speed = 2f;
 
     // Getting the manager
     GameObject managerObject;
@@ -94,7 +94,7 @@ public class Character : MonoBehaviour
                 this.transform.localEulerAngles = new Vector3(45, 0, 0);
                 stop = Mathf.Round(transform.localPosition.x + 1);
                 this.transform.localScale = new Vector3(2, transform.localScale.y, transform.localScale.z);
-                rigidbody.velocity = transform.right * Time.deltaTime * speed;
+                rigidbody.velocity = transform.right * speed;
 
                 animator.Play("walking-side");
                 
@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
                 stop = Mathf.Round(transform.localPosition.x - 1);
                 // Flipping horizontally
                 this.transform.localScale = new Vector3(-2, transform.localScale.y, transform.localScale.z);
-                rigidbody.velocity = -transform.right * Time.deltaTime * speed;
+                rigidbody.velocity = -transform.right * speed;
                 animator.Play("walking-side");
             }
         }
@@ -121,7 +121,7 @@ public class Character : MonoBehaviour
             {
                 direction = 3;
                 stop = Mathf.Round(transform.localPosition.z + 1);
-                rigidbody.velocity = transform.forward * Time.deltaTime * speed;
+				rigidbody.velocity = transform.forward  * (speed+0.5f);
                 animator.Play("walking-front");
             }
         }
@@ -132,7 +132,7 @@ public class Character : MonoBehaviour
             {
                 direction = 1;
                 stop = Mathf.Round(transform.localPosition.z - 1);
-                rigidbody.velocity = -transform.forward * Time.deltaTime * speed;
+				rigidbody.velocity = -transform.forward * (speed+0.5f);
                 animator.Play("walking-front");
             }
         }

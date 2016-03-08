@@ -15,9 +15,12 @@ public class GameManager : MonoBehaviour {
 	public Tile [,]  tile_matrix;
 	List<Tile> tile_row;
 
+	// Scent trail
+	public List<GameObject> scentList;
+
 	// Player
-	GameObject playerObject;
-	Character player;
+	public GameObject playerObject;
+	public Character player;
 
     // Getting all guards
     GameObject[] guards;
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour {
 		tileFolder = new GameObject ();
 		tileFolder.name = "Tiles";
 
+		scentList = new List<GameObject>();
+
 		// Obtaining the player. 
 		playerObject = GameObject.Find ("skeleton");
 		player = playerObject.GetComponent<Character> ();
@@ -68,19 +73,26 @@ public class GameManager : MonoBehaviour {
         if (player.turnLock == false)
         {
             // Wait for player input, when it happens, initiate 1 'Turn' in the game world.
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)
-               || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow))
+			if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow)
+				|| Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // We only want this to happen once.
                 paused = false;                                     //UNPAUSING
                 player.Move();
-                
-                foreach (GameObject go in guards)
-                {
-                    go.GetComponent<Dog>().Move();
-                }
+		//		print (scentList.Count);
+				foreach (GameObject go in guards)
+				{
+					Guard guard = go.GetComponent<Guard> ();
+					guard.patrolState.once = false;
+//					
+					//if (guard.currentState == guard.trailState) {
+//						print ("suck my balls");
+//						guard.trailState.index++;
+//						print (guard.trailState.index);
+//					}
+					guard.Update();
+				}
             }
-          
         }
 	}
 

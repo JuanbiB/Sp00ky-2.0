@@ -13,13 +13,13 @@ public class Tile : MonoBehaviour {
     GameObject colFolder;
     private int index = 1;
 
-    bool hasScent = false;
+    public bool hasScent = false;
 
     private ScentModel scent_model;
 
-    private float fade_counter = 3f;
+    private float fade_counter = 5f;
 
-    GameObject colObject;
+    public GameObject colObject;
 
     public bool occupied = false;
 
@@ -37,6 +37,7 @@ public class Tile : MonoBehaviour {
         box_collider = this.gameObject.AddComponent<BoxCollider>();
         box_collider.isTrigger = true;
         box_collider.size = new Vector3(.8f, 1, 1);
+		box_collider.tag = "Tile";
 
         var modelObject = GameObject.CreatePrimitive(PrimitiveType.Quad);
 		model = modelObject.AddComponent<TileModel> ();
@@ -59,10 +60,13 @@ public class Tile : MonoBehaviour {
                 Color changing = new Color(normal.r, normal.g, normal.b, fade_counter * 0.5f);
                 scent_model.gameObject.GetComponent<Renderer>().material.color = changing;
 
-                if (fade_counter * 0.5f < 0)
+                if (fade_counter * 0 < -5)
                 {
                     hasScent = false;
                     fade_counter = 3f;
+					print ("count before " + manager.scentList.Count);
+					manager.scentList.Remove (this.colObject);
+					print ("count before " + manager.scentList.Count);
                     Destroy(colObject.gameObject);
                 }
             }
@@ -83,8 +87,9 @@ public class Tile : MonoBehaviour {
 
         colObject.transform.position = this.gameObject.transform.position;
         BoxCollider col = colObject.AddComponent<BoxCollider>();
-        col.size = new Vector3(.5f, .5f, .5f);
+        col.size = new Vector3(.5f, 2f, .5f);
         col.isTrigger = true;
+		col.tag = "Scent";
 
         var scentObject = GameObject.CreatePrimitive(PrimitiveType.Quad);
         scent_model = scentObject.AddComponent<ScentModel>();
@@ -92,41 +97,37 @@ public class Tile : MonoBehaviour {
     }
 
         void OnTriggerEnter(Collider coll)
-    {
-        if (coll.tag == "wall")
-        {
-            occupied = true;
-            print("happening" + " at " + x + "," + y);
-        }
+	{
+		if (coll.tag == "wall") {
+			occupied = true;
+			//print("happening" + " at " + x + "," + y);
+		}
 
-        if (coll.tag == "Player" && occupied == true)
-        {
-            print("cant come thru here!");
-        }
-
-        else if (coll.tag == "Player" || coll.tag == "wall")
-        {
-            print("Hey, I'm tile at " + x + " and " + y + " and skelly just entered me.");
-            if (hasScent == false)
-            {
-                spawnCollider();
-                hasScent = true;
-            }
-            else
-            {
-                refresh_scent();
-            }
-        }
+		if (coll.tag == "Player" && occupied == true) {
+			//print("cant come thru here!");
+		} else if (coll.tag == "Player") {//|| coll.tag == "wall")
+			//print("Hey, I'm tile at " + x + " and " + y + " and skelly just entered me.");
+			if (hasScent == false) {
+				spawnCollider ();
+				manager.scentList.Add (this.colObject);
+				hasScent = true;
+			} else {
+				manager.scentList.Remove (this.colObject);
+				manager.scentList.Add (this.colObject);
+				refresh_scent ();
+			}
+		}
         
-    }
+	}
 
     // Scent shouldn't go away if you stand still on the tile you're on.
         void OnTriggerStay(Collider coll)
     {
-        refresh_scent();
+       
      
         if (coll.tag == "Player")
         {
+			refresh_scent();
            
             if (coll.gameObject.GetComponent<Character>().char_pause == true)
             {
